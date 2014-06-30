@@ -4,8 +4,6 @@ def char_count(str)
   counts = {}
   str.downcase.each_codepoint do |char|
 
-    next if char == 32
-
     counts[char] = 0 unless counts.include?(char)
 
     counts[char] += 1
@@ -22,7 +20,7 @@ def char_count(str)
   max_count = counts.fetch(max_char_count.last.map{ |r| r[0] }.min)
   min_count = counts.fetch(min_char_count.last.map{ |r| r[0] }.min)
 
-  print "#{max_count} '#{max_char}', #{min_count} '#{min_char}'"
+  return "#{max_count} '#{max_char}', #{min_count} '#{min_char}'"
 
 end
 

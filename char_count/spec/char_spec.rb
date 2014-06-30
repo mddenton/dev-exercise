@@ -1,9 +1,6 @@
 require './char_count'
 
 describe "char_count" do
-	it "accepts an empty string" do 
-		expect(char_count(" ")).to eq("1 ' ', 1 ' '")
-	end
 	it "accepts a string and outputs most and least characters" do 
 		expect(char_count("supercalifragilisticexpialidocious")).to eq("7 'i', 1 'd'")
 	end
