@@ -13,8 +13,7 @@
     libraries. List any assumptions you make about the problem.
 
     My solution is in Ruby and includes tests in RSpec. The function assumes a 
-    string will be passed as its argument. Blank characters (spaces) are skipped and 
-    not counted.
+    string will be passed as its argument.
 
 2.  Using the following snippet of HTML as a starting point, create a simple page
     with Javascript that allows a user to add another record to the table. The table
