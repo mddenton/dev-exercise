@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>Member Status</h1>
+  <form class="new-member" method="post" action="/members">
+    <input class="name" type="text" placeholder="name" name="name"/>
+    <input class="status" type="text" placeholder="status" name="status"/>
+    <button input class="submit" type="submit">Add Member</button>
+  </form>
+
+  <table name="membertable">
+    <thead> <tr>
+      <th>Name</th> <th>Status</th>
+      </tr> </thead>
+      <tbody id="member_list"></tbody>
+  </table>
+
+  <script id='templates' type="text/template" >
+    <% members.forEach(function(member) { %>
+      <tr>
+        <td><%= member.name %></td> <td><%= member.status %></td>
+      </tr>
+    <% }); %>
+  </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script type="text/javascript">
+    var members = [];
+
+    $('form.new-member').on('submit', function (e) {
+      e.preventDefault();
+      // In jQuery, the value of `this` is the element that triggered the event
+      // In this case, `this` points to the form tag
+      var newName = $('.name', this).val();
+      var newStatus = $('.status', this).val();
+      console.log('You entered:', newName, ':', newStatus);
+      var newItem = members.push({name:newName, status:newStatus});
+      var itemTemplateHtml = $('#templates').html();
+      var itemTemplate = _.template(itemTemplateHtml);
+
+      var sortedMembers = _.sortBy(members, function(member){
+        return member.name;
+      });
+
+      $('#member_list').empty().append(itemTemplate(members.sort(function(a, b) {
+        if (a.name < b.name) {
+          return -1;
+        } else if (a.name > b.name) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })));
+    });
+
+  </script>
+</body>
+</html>
